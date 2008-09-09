@@ -1,3 +1,6 @@
+# TODO
+# - use standard %doc in %files
+# - use standard DESTDIR in %install
 Summary:	awesome-status populates the awesome window manager's widgets
 Summary(hu.UTF-8):	awesome-status az awesome ablakkezelő widget-jeit tölti meg információval
 Name:		awesome-status
@@ -34,10 +37,12 @@ konfigurációs fájl a csomagban. Awesome-status kompatibilis az awesome
 
 %prep
 %setup -q
-sed -i "s|doc/awesome-status/|doc/awesome-status-%{version}/|g" Makefile
+%{__sed} -i -e "s|doc/awesome-status/|doc/awesome-status-%{version}/|g" Makefile
 
 %build
-CFLAGS="%{rpmcflags}" ./configure --prefix=$RPM_BUILD_ROOT%{_prefix} 
+CFLAGS="%{rpmcflags}" \
+./configure \
+	--prefix=$RPM_BUILD_ROOT%{_prefix}
 %{__make}
 
 %install
