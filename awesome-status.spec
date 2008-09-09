@@ -37,7 +37,7 @@ konfigurációs fájl a csomagban. Awesome-status kompatibilis az awesome
 sed -i "s|doc/awesome-status/|doc/awesome-status-%{version}/|g" Makefile
 
 %build
-./configure --prefix=$RPM_BUILD_ROOT%{_prefix}
+./configure --prefix=$RPM_BUILD_ROOT%{_prefix} CFLAGS=%{rpmcflags}
 %{__make}
 
 %install
