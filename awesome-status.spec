@@ -48,6 +48,7 @@ CFLAGS="%{rpmcflags}" \
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install
+rm -rf $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -55,4 +56,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/%{name}
-%{_docdir}/%{name}-%{version}/*
+%doc Changelog README config-skeleton
